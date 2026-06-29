@@ -1,0 +1,14 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        counts=26*[0]
+        l=0
+        maxF=0
+        res=0
+        for r in range(len(s)):
+            counts[ord(s[r])-65]+=1
+            maxF=max(maxF,counts[ord(s[r])-65])
+            while r-l+1-max(counts)>k :
+                counts[ord(s[l])-65]-=1
+                l+=1
+            res=max(res,r-l+1)
+        return res
